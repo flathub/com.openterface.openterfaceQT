@@ -1,6 +1,6 @@
 app-id: com.openterface.openterfaceQT
 runtime: org.kde.Platform
-runtime-version: '6.9'
+runtime-version: '6.10'
 sdk: org.kde.Sdk
 command: openterfaceQT
 finish-args:
@@ -10,17 +10,6 @@ finish-args:
 - --device=all
 - --filesystem=/run/udev:ro
 modules:
-- shared-modules/libusb/libusb.json
-- name: libjpeg-turbo
-  buildsystem: cmake-ninja
-  config-opts:
-  - -DCMAKE_BUILD_TYPE=Release
-  - -DENABLE_STATIC=OFF
-  - -DENABLE_SHARED=ON
-  sources:
-  - type: archive
-    url: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/3.0.4.tar.gz
-    sha256: 0270f9496ad6d69e743f1e7b9e3e9398f5b4d606b6a47744df4b73df50f62e38
 - name: openterfaceQT
   buildsystem: cmake-ninja
   config-opts:
@@ -48,6 +37,3 @@ modules:
   - install -Dm644 com.openterface.openterfaceQT.desktop /app/share/applications/com.openterface.openterfaceQT.desktop
   - install -Dm644 com.openterface.openterfaceQT.metainfo.xml /app/share/metainfo/com.openterface.openterfaceQT.metainfo.xml
   - install -Dm644 images/icon_128.png /app/share/icons/hicolor/128x128/apps/com.openterface.openterfaceQT.png
-cleanup-commands:
-- mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
-- mkdir -p ${FLATPAK_DEST}/lib/gstreamer
